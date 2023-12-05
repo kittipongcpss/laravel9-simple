@@ -30,7 +30,7 @@
                 text: '{{ Session::get('message') }}',               
                 })
             break;
-            case 'toast_success':
+            case 'check_success':
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
