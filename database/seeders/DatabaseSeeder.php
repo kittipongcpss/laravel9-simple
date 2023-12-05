@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
 
         Dummy::factory(30)->create();
 
-        $password = bcrypt('rahasia');
+        $password = bcrypt('password');
         User::create([
-            'name' => 'Muhammad Iqbal',
-            'email' => 'iqbal@mail.com',
+            'name' => 'kitmiook',
+            'email' => 'kittipong@cpss.ac.th',
             'email_verified_at' => now(),
             'password' => $password,
             'remember_token' => Str::random(10),
