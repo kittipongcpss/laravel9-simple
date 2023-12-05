@@ -58,8 +58,8 @@ class CrudController extends Controller
 
         $notification = array(
             'status' => 'success',
-            'title' => 'Proses berhasil',
-            'message' => 'Data berhasil diperbaharui'
+            'title' => 'แก้ไขข้อูล',
+            'message' => 'ระบบแก้ไขข้อมูลเสร็จเรียบร้อย'
         );
 
         return Redirect()->back()->with($notification);
