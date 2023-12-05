@@ -31,8 +31,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $notification = array(
                 'status' => 'toast_success',
-                'title' => 'Login Berhasil',
-                'message' => 'Login Berhasil',
+                'title' => 'Login ถูกต้อง',
+                'message' => 'Login ถูกต้อง',
 
             );  
             
@@ -47,8 +47,8 @@ class AuthController extends Controller
 
         $notification = array(
                 'status' => 'error',
-                'title' => 'Login Gagal',
-                'message' => 'Username / Password Salah',
+                'title' => 'ไม่สามารถเข้าสู่ระบบได้',
+                'message' => 'Username / Password ไม่ถูกต้อง',
         );
         return back()->with($notification);
 
@@ -60,8 +60,8 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         $notification = array(
             'status' => 'toast_success',
-            'title' => 'Logout berhasil',
-            'message' => 'Terima kasih telah menggunakan aplikasi kami'
+            'title' => 'ออกจากระบบเรียบร้อย',
+            'message' => 'คุณได้้ออกจากระบบเสร็จเรียบร้อย'
         );
 
         return redirect('/login')->with($notification);
