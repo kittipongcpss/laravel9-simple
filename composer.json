@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "anhskohbo/no-captcha": "*",
+        "arcanedev/no-captcha": "*",
         "fakerphp/faker": "^1.19",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",

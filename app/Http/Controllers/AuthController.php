@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
+use Session;
+use App\Rules\ReCaptcha;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -19,15 +23,27 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function auth(Request $request){
-        //  dd($request->all());
+    public function auth(Request $request)
+    {
+        // dd($request->all());
       
         $validated = $request->validate([
             'username' => 'required',
             'password' => 'required',
+            'g-recaptcha-response' => 'required',
+        ],[
+            'username.required' => 'กรุณากรอก Username',
+            'password.required' => 'กรุณากรอก Password',
+            'g-recaptcha-response.required' => 'กรุณากดฉันไม่ใช่โปรแกรมอัตโนมัติ',
         ]);
-        
-        if(Auth::attempt($validated)){
+        $userlogin = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
+        // dd($validated);
+        // if(Auth::attempt($userlogin)){
+         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
+            
             $request->session()->regenerate();
             $notification = array(
                 'status' => 'check_success',
@@ -43,6 +59,9 @@ class AuthController extends Controller
             $update->save();
 
             return redirect()->intended('/dashboard')->with($notification);
+        }
+        else{
+            Session::flash('wronguser','Username/Password ไม่ถูกต้อง');
         }
 
         $notification = array(
